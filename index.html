@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROHIT SHARMA | Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0d0d0d;color:#fff;overflow-x:hidden;}
+
+/* HEADER STICKY */
+header.sticky-header{position:sticky;top:0;z-index:1100;background:#0d0d0d;padding:5px 0;text-align:center;}
+.neon-outline{font-family:'Orbitron',sans-serif;font-weight:700;color:#0d0d0d;position:relative;display:inline-block;white-space:nowrap;font-size:clamp(2rem,10vw,5rem);}
+.neon-outline::before{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;color:transparent;-webkit-text-stroke:2px #00f7ff;background:linear-gradient(270deg,#ff00ff,#00f7ff,#ff00ff);background-size:300% 300%;-webkit-background-clip:text;background-clip:text;animation:glowAnim 4s linear infinite;}
+@keyframes glowAnim{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+/* NAVBAR STICKY */
+nav{position:sticky;top:0;width:100%;overflow-x:auto;overflow-y:hidden;background:rgba(10,10,10,0.95);padding:12px 0;backdrop-filter:blur(10px);z-index:1050;}
+nav::-webkit-scrollbar{display:none;}
+nav{-ms-overflow-style:none;scrollbar-width:none;}
+.nav-wrapper{display:flex;gap:45px;padding:0 20px;align-items:center;}
+nav a{flex:0 0 auto;text-decoration:none;color:#fff;font-weight:600;padding:12px 18px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;position:relative;z-index:0;height:35px;line-height:35px;}
+nav a::before{content:"";position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;border-radius:14px;background:linear-gradient(270deg,#ff00ff,#00f7ff,#ff00ff);background-size:300% 300%;z-index:-1;animation:glow 4s linear infinite;opacity:1;}
+@keyframes glow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+nav a.active{box-shadow:0 0 25px #00f7ff;transform:scale(1.1);transition:transform 0.3s ease, box-shadow 0.3s ease;}
+
+/* SECTIONS */
+section{padding:30px 20px 60px 20px;text-align:center;}
+.about{display:flex;flex-direction:column;align-items:center;gap:20px;}
+.about img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid #00f7ff;box-shadow:0 0 20px #00f7ff;}
+.about p{max-width:600px;line-height:1.6;font-size:1rem;color:#f0f0f0;}
+
+/* WORK SECTION */
+.work-section h3{font-size:1.2rem;color:#fff;margin-top:25px;margin-bottom:10px;}
+.scroll-container{display:flex;overflow-x:auto;gap:20px;scroll-behavior:auto;padding:10px;}
+.scroll-container::-webkit-scrollbar{display:none;}
+.video-card{flex:0 0 auto;border-radius:10px;overflow:hidden;box-shadow:0 0 15px rgba(0,247,255,0.3);transition:transform 0.3s ease, box-shadow 0.3s ease;position:relative;cursor:pointer;}
+.video-card img, .video-card video{display:block;width:180px;aspect-ratio:16/9;object-fit:cover;}
+.video-card.reel img, .video-card.reel video{width:120px;aspect-ratio:9/16;}
+.video-card.active{transform:scale(1.1);box-shadow:0 0 30px #00f7ff;z-index:2;}
+.speaker-toggle{position:absolute;bottom:5px;right:5px;background:rgba(0,0,0,0.5);color:#00f7ff;padding:4px 6px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;}
+
+/* CONTACT */
+.contact{max-width:600px;margin:auto;text-align:center;}
+.contact input,.contact textarea{width:100%;padding:12px;margin:10px 0;border:none;border-radius:6px;background:rgba(255,255,255,0.1);color:#fff;box-shadow:0 0 10px #00f7ff;}
+.contact textarea{height:120px;resize:none;}
+.contact button{padding:10px 20px;border:none;border-radius:6px;background:linear-gradient(45deg,#ff00ff,#00f7ff);color:#fff;font-size:1rem;cursor:pointer;box-shadow:0 0 15px #00f7ff;transition:transform 0.3s ease;}
+.contact button:hover{transform:scale(1.05);}
+
+/* SOCIALS */
+.socials{margin-top:20px;display:flex;justify-content:center;gap:15px;}
+.socials a img{width:40px;height:40px;filter:drop-shadow(0 0 10px #00f7ff);transition:transform 0.3s ease, filter 0.3s ease;}
+.socials a img:hover{transform:scale(1.2);filter:drop-shadow(0 0 20px #ff00ff);}
+</style>
+</head>
+<body>
+
+<header class="sticky-header">
+  <h1 class="neon-outline" data-text="ROHIT SHARMA">ROHIT SHARMA</h1>
+</header>
+
+<nav>
+  <div class="nav-wrapper">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+    <a href="#socials">Handles</a>
+  </div>
+</nav>
+
+<section id="home" class="about"></section>
+
+<section id="about" class="about">
+  <h2 class="neon-outline" data-text="About">About</h2>
+  <img src="profile.jpg" alt="Profile Picture">
+  <p>I am 2 years experienced professional skilled video editor. I can edit all types of video like documentary editing, 3D editing, YouTube video editing, podcast editing, subtitles editing, faceless video editing, Instagram reels and YT shorts video editing.</p>
+</section>
+
+<section id="work" class="work-section">
+  <h2 class="neon-outline" data-text="Work">Work</h2>
+
+  <h3>Reels Editing</h3>
+  <div class="scroll-container" id="reels-container"></div>
+
+  <h3>Documentary Editing</h3>
+  <div class="scroll-container" id="doc-container"></div>
+
+  <h3>3D Editing</h3>
+  <div class="scroll-container" id="3d-container"></div>
+
+  <h3>Podcast Editing</h3>
+  <div class="scroll-container" id="podcast-container"></div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="neon-outline" data-text="Contact">Contact Me</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Type your message here..." required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<section id="socials" class="socials">
+  <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
+  <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter"></a>
+  <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+  <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+  <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+</section>
+
+<script>
+// Navbar scroll spy
+const sections=document.querySelectorAll('section');
+const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(section=>{
+    const sectionTop=section.offsetTop-150;
+    if(scrollY>=sectionTop) current=section.getAttribute('id');
+  });
+  navLinks.forEach(link=>{link.classList.remove('active'); if(link.getAttribute('href')=='#'+current) link.classList.add('active');});
+});
+
+// Video section setup
+function setupVideoSection(containerId, prefix, count, isReel=false){
+  const container=document.getElementById(containerId);
+  let cards=[];
+  for(let i=1;i<=count;i++){
+    const video=document.createElement('video');
+    video.src=`${prefix}${i}.mp4`;
+    video.loop=true;
+    video.muted=true; // Default muted
+    video.preload='metadata';
+    video.style.display='block';
+    video.style.width=isReel?'120px':'180px';
+    video.style.aspectRatio=isReel?'9/16':'16/9';
+    video.style.objectFit='cover';
+
+    const card=document.createElement('div');
+    card.className='video-card'+(isReel?' reel':'');
+    card.appendChild(video);
+
+    // Sound toggle button
+    const toggle=document.createElement('div');
+    toggle.className='speaker-toggle';
+    toggle.innerHTML='🔇';
+    toggle.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      video.muted=!video.muted;
+      toggle.innerHTML=video.muted?'🔇':'🔊';
+    });
+    card.appendChild(toggle);
+
+    // Click to play/pause
+    card.addEventListener('click',()=>{
+      if(video.paused){
+        video.play();
+      }else{
+        video.pause();
+      }
+    });
+
+    container.appendChild(card);
+    cards.push(card);
+  }
+
+  // Duplicate cards for circular scroll
+  cards.forEach(c=>container.appendChild(c.cloneNode(true)));
+  cards.reverse().forEach(c=>container.insertBefore(c.cloneNode(true), container.firstChild));
+
+  // Scroll event for active card and circular scroll
+  container.addEventListener('scroll', () => {
+    let centerX = container.scrollLeft + container.offsetWidth / 2;
+    const allCards = container.querySelectorAll('.video-card');
+    let closest = null, dist = Infinity;
+    allCards.forEach(card => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      if (Math.abs(centerX - cardCenter) < dist) {
+        dist = Math.abs(centerX - cardCenter);
+        closest = card;
+      }
+    });
+    allCards.forEach(card => card.classList.remove('active'));
+    if (closest) closest.classList.add('active');
+
+    // Circular scroll logic
+    if (container.scrollLeft <= 0) {
+      container.scrollLeft = cards.length * cards[0].offsetWidth;
+    } else if (container.scrollLeft >= container.scrollWidth - container.offsetWidth) {
+      container.scrollLeft = cards.length * cards[0].offsetWidth - container.offsetWidth;
+    }
+  });
+}
+
+// Setup all sections
+setupVideoSection('reels-container','reel',3,true);        // Reels
+setupVideoSection('doc-container','documentary',3);        // Documentary
+setupVideoSection('3d-container','3dvideo',3);             // 3D Videos
+setupVideoSection('podcast-container','podcast',3);        // Podcast Videos
+</script>
+</body>
+</html>
