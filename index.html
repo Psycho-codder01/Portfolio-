@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROHIT SHARMA | Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap');
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+body {background:#0d0d0d; color:#fff; overflow-x:hidden;}
+/* HEADER STICKY */
+header.sticky-header {position: sticky; top: 0; z-index: 1100; background: #0d0d0d; padding:5px 0; text-align: center;}
+/* NEON TEXT */
+.neon-outline {font-family:'Orbitron',sans-serif; font-weight:700; color:#0d0d0d; position:relative; display:inline-block; white-space:nowrap; font-size:clamp(2rem,10vw,5rem);} 
+.neon-outline::before {content:attr(data-text); position:absolute; top:0; left:0; width:100%; height:100%; color:transparent; -webkit-text-stroke:2px #00f7ff; background:linear-gradient(270deg,#ff00ff,#00f7ff,#ff00ff); background-size:300% 300%; -webkit-background-clip:text; background-clip:text; animation:glowAnim 4s linear infinite;}
+@keyframes glowAnim {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+/* NAVBAR STICKY */
+nav {position: sticky; top: 0; width: 100%; overflow-x: auto; overflow-y: hidden; background: rgba(10, 10, 10, 0.95); padding: 12px 0; backdrop-filter: blur(10px); z-index: 1050;}
+nav::-webkit-scrollbar {display:none;} nav{-ms-overflow-style:none; scrollbar-width:none;}
+.nav-wrapper {display:flex; gap:45px; padding:0 20px; align-items:center;}
+nav a {flex:0 0 auto; text-decoration:none; color:#fff; font-weight:600; padding:12px 18px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; position:relative; z-index:0; height:35px; line-height:35px;}
+nav a::before {content:""; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; border-radius:14px; background:linear-gradient(270deg,#ff00ff,#00f7ff,#ff00ff); background-size:300% 300%; z-index:-1; animation:glow 4s linear infinite; opacity:1;}
+@keyframes glow {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+nav a.active {box-shadow:0 0 25px #00f7ff; transform:scale(1.1); transition:transform 0.3s ease, box-shadow 0.3s ease;}
+/* SECTIONS */
+section {padding:30px 20px 60px 20px; text-align:center;}
+.about {display:flex; flex-direction:column; align-items:center; gap:20px;}
+.about img {width:150px; height:150px; border-radius:50%; object-fit:cover; border:3px solid #00f7ff; box-shadow:0 0 20px #00f7ff;}
+.about p {max-width:600px; line-height:1.6; font-size:1rem; color:#f0f0f0;}
+/* WORK SECTION */
+.work-section h3 {font-size:1.2rem; color:#fff; margin-top:25px; margin-bottom:10px;}
+.scroll-container {display:flex; overflow-x:auto; gap:20px; scroll-behavior:auto; padding:10px;}
+.scroll-container::-webkit-scrollbar {display:none;}
+.video-card {flex:0 0 auto; border-radius:10px; overflow:hidden; box-shadow:0 0 15px rgba(0,247,255,0.3); transition:transform 0.3s ease, box-shadow 0.3s ease; position:relative;}
+.video-card img, .video-card video {display:block; width:180px; aspect-ratio:16/9; object-fit:cover;}
+.video-card.reel img, .video-card.reel video {width:120px; aspect-ratio:9/16;}
+.video-card.active {transform:scale(1.1); box-shadow:0 0 30px #00f7ff; z-index:2;}
+/* CONTACT */
+.contact {max-width:600px; margin:auto; text-align:center;}
+.contact input, .contact textarea {width:100%; padding:12px; margin:10px 0; border:none; border-radius:6px; outline:none; background:rgba(255,255,255,0.1); color:#fff; box-shadow:0 0 10px #00f7ff;}
+.contact textarea {height:120px; resize:none;}
+.contact button {padding:10px 20px; border:none; border-radius:6px; background:linear-gradient(45deg,#ff00ff,#00f7ff); color:#fff; font-size:1rem; cursor:pointer; box-shadow:0 0 15px #00f7ff; transition:transform 0.3s ease;}
+.contact button:hover {transform:scale(1.05);}
+/* SOCIALS */
+.socials {margin-top:20px; display:flex; justify-content:center; gap:15px;}
+.socials a {display:inline-block;}
+.socials img {width:40px; height:40px; filter:drop-shadow(0 0 10px #00f7ff); transition:transform 0.3s ease, filter 0.3s ease;}
+.socials img:hover {transform:scale(1.2); filter:drop-shadow(0 0 20px #ff00ff);}
+/* LOADER */
+#page-loader {position:fixed; inset:0; background:linear-gradient(135deg,#0b0b0b,#070707); display:flex; align-items:center; justify-content:center; z-index:2000;}
+.loader-box {text-align:center;}
+.loader-animation {width:120px; height:120px; border-radius:20px; display:inline-grid; place-items:center; box-shadow:0 0 40px rgba(0,247,255,0.12); background:linear-gradient(135deg,#070707,#111); border:2px solid rgba(0,247,255,0.08); position:relative; overflow:hidden;}
+.loader-animation::after {content:""; position:absolute; inset:-50% -50%; background:conic-gradient(from 0deg,#00f7ff, #ff00ff, transparent 40%); animation:spin 2s linear infinite; opacity:0.9; filter:blur(12px);} 
+@keyframes spin {to{transform:rotate(360deg);} }
+.loader-text {margin-top:14px; color:#cfefff; font-weight:600;}
+/* Reveal animation for sections */
+.reveal {opacity:0; transform:translateY(20px); transition:opacity 0.7s ease, transform 0.7s ease;}
+.reveal.visible {opacity:1; transform:translateY(0);} 
+</style>
+</head>
+<body><!-- Page loader shown until "hero" is ready --><div id="page-loader">
+  <div class="loader-box">
+    <div class="loader-animation"></div>
+    <div class="loader-text">Portfolio is loading...</div>
+  </div>
+</div><header class="sticky-header">
+  <h1 class="neon-outline" data-text="ROHIT SHARMA">ROHIT SHARMA</h1>
+</header><nav>
+  <div class="nav-wrapper">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+    <a href="#socials">Handles</a>
+  </div>
+</nav><section id="home" class="about reveal">
+  <!-- Empty hero: will show after loader hides -->
+</section><section id="about" class="about reveal">
+  <h2 class="neon-outline" data-text="About">About</h2>
+  <!-- Profile image will attempt to load ./profile.png automatically -->
+  <img id="profileImg" src="https://picsum.photos/150" alt="Profile Picture">
+  <p>I am 2 years experienced professional skilled video editor. I can edit all types of video like documentary editing, 3D editing, YouTube video editing, podcast editing, subtitles editing, faceless video editing, Instagram reels and YT shorts video editing.</p>
+</section><section id="work" class="work-section reveal">
+  <h2 class="neon-outline" data-text="Work">Work</h2>  <h3>Reels Editing</h3>
+  <div class="scroll-container" id="reels-container">
+    <div class="video-card reel"><img src="https://picsum.photos/id/1015/200/400" alt="Reel 1"></div>
+    <div class="video-card reel"><img src="https://picsum.photos/id/1016/200/400" alt="Reel 2"></div>
+    <div class="video-card reel"><img src="https://picsum.photos/id/1018/200/400" alt="Reel 3"></div>
+  </div>  <h3>Documentary Editing</h3>
+  <div class="scroll-container" id="doc-container">
+    <!-- Images/videos will be auto-inserted by script if files present in same folder -->
+  </div>  <h3>3D Editing</h3>
+  <div class="scroll-container" id="3d-container">
+    <!-- Images/videos will be auto-inserted by script if files present in same folder -->
+  </div>
+</section><section id="contact" class="contact reveal">
+  <h2 class="neon-outline" data-text="Contact">Contact Me</h2>
+  <form id="contactForm">
+    <input type="text" id="senderName" placeholder="Your Name" required>
+    <input type="email" id="senderEmail" placeholder="Your Email" required>
+    <textarea id="senderMsg" placeholder="Type your message here..." required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section><section id="socials" class="socials reveal">
+  <a id="link-youtube" href="#" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
+  <a id="link-twitter" href="#" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter"></a>
+  <a id="link-facebook" href="#" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+  <a id="link-instagram" href="#" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+  <a id="link-linkedin" href="#" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+</section><script>
+/* ----------------- NAV SPY ----------------- */
+const sections=document.querySelectorAll('section');
+const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(section=>{
+    const sectionTop=section.offsetTop-150;
+    if(scrollY>=sectionTop) current=section.getAttribute('id');
+  });
+  navLinks.forEach(link=>{link.classList.remove('active'); if(link.getAttribute('href')=='#'+current) link.classList.add('active');});
+});
+
+/* ----------------- CIRCULAR SCROLL SETUP (keeps same behaviour) ----------------- */
+function setupCircularScroll(containerId){
+  const container = document.getElementById(containerId);
+  if(!container) return;
+  const cards = Array.from(container.children);
+  if(cards.length === 0) return; // will be populated later if empty
+
+  // Duplicate cards for circular effect
+  cards.forEach(card => container.appendChild(card.cloneNode(true)));
+  cards.reverse().forEach(card => container.insertBefore(card.cloneNode(true), container.firstChild));
+
+  container.addEventListener('scroll', () => {
+    let centerX = container.scrollLeft + container.offsetWidth / 2;
+    const allCards = container.querySelectorAll('.video-card');
+    let closest = null, dist = Infinity;
+    allCards.forEach(card => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      if (Math.abs(centerX - cardCenter) < dist) { dist = Math.abs(centerX - cardCenter); closest = card; }
+    });
+    allCards.forEach(card => card.classList.remove('active'));
+    if (closest) closest.classList.add('active');
+
+    // Circular scroll logic
+    if(container.scrollLeft <= 0){
+      container.scrollLeft = cards.length * cards[0].offsetWidth;
+    } else if(container.scrollLeft >= container.scrollWidth - container.offsetWidth){
+      container.scrollLeft = cards.length * cards[0].offsetWidth - container.offsetWidth;
+    }
+  });
+}
+
+/* We'll call setupCircularScroll after we populate containers */
+
+/* ----------------- AUTO LOAD LOCAL ASSETS (profile.png, videos with known names) ----------------- */
+function fileExists(url, cb){
+  fetch(url, {method:'HEAD'}).then(r=>cb(r.ok)).catch(()=>cb(false));
+}
+
+// Try to use ./profile.png if present in same folder
+fileExists('./profile.png', function(exists){ if(exists) document.getElementById('profileImg').src = './profile.png'; });
+
+// Auto-insert documentary videos if present (documentary1.mp4, documentary2.mp4 ...)
+const docContainer = document.getElementById('doc-container');
+const threeDContainer = document.getElementById('3d-container');
+
+function tryInsertVideos(container, baseNames){
+  baseNames.forEach(name=>{
+    const path = './' + name;
+    fileExists(path, exists=>{
+      if(exists){
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        const vid = document.createElement('video');
+        vid.src = path; vid.setAttribute('playsinline',''); vid.setAttribute('muted',''); vid.setAttribute('loop',''); vid.preload='metadata';
+        vid.addEventListener('mouseenter', ()=>vid.play());
+        vid.addEventListener('mouseleave', ()=>{ vid.pause(); vid.currentTime = 0; });
+        card.appendChild(vid);
+        container.appendChild(card);
+
+        // after adding first items, setup circular scroll (if not already)
+        setTimeout(()=>setupCircularScroll(container.id), 200);
+      }
+    });
+  });
+}
+
+tryInsertVideos(docContainer, ['documentary1.mp4','documentary2.mp4','documentary3.mp4']);
+tryInsertVideos(threeDContainer, ['3Dvideo1.mp4','3Dvideo2.mp4','3Dvideo3.mp4','3Dvideo4.mp4']);
+
+// Also preserve any manually placed image/video cards by initializing circular scroll after small delay
+setTimeout(()=>{
+  ['reels-container','doc-container','3d-container'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && el.children.length) setupCircularScroll(id);
+  });
+},800);
+
+/* ----------------- LAZY REVEAL SECTIONS AFTER HERO LOAD ----------------- */
+// Simulate hero/main content "ready" when critical assets like profile.png and first videos are loaded (or timeout)
+let heroReady = false;
+let readyChecks = 0;
+function checkHeroReady(){
+  readyChecks++;
+  const profileLoaded = document.getElementById('profileImg').complete;
+  const someDoc = document.querySelector('#doc-container video');
+  if(profileLoaded || someDoc || readyChecks > 10){
+    heroReady = true; onHeroReady();
+  } else {
+    setTimeout(checkHeroReady, 300);
+  }
+}
+setTimeout(checkHeroReady, 300);
+
+function onHeroReady(){
+  // Hide loader and reveal sections smoothly
+  const loader = document.getElementById('page-loader');
+  loader.style.transition = 'opacity 0.6s ease';
+  loader.style.opacity = 0; loader.addEventListener('transitionend', ()=>loader.remove());
+
+  // Reveal visible sections one by one
+  const revealEls = document.querySelectorAll('.reveal');
+  revealEls.forEach((el, i)=> setTimeout(()=> el.classList.add('visible'), i*150));
+}
+
+/* ----------------- SOCIAL LINKS PLACEHOLDERS (paste your links into JS below) ----------------- */
+// Replace the strings below with your real profile URLs (keep quotes)
+const SOCIAL_LINKS = {
+  youtube: 'paste your youtube link here',
+  twitter: 'paste your twitter link here',
+  facebook: 'paste your facebook link here',
+  instagram: 'paste your instagram link here',
+  linkedin: 'paste your linkedin link here'
+};
+
+document.getElementById('link-youtube').href = SOCIAL_LINKS.youtube;
+document.getElementById('link-twitter').href = SOCIAL_LINKS.twitter;
+document.getElementById('link-facebook').href = SOCIAL_LINKS.facebook;
+document.getElementById('link-instagram').href = SOCIAL_LINKS.instagram;
+document.getElementById('link-linkedin').href = SOCIAL_LINKS.linkedin;
+
+/* ----------------- CONTACT: send email to your inbox with rate-limit (frontend only) ----------------- */
+// NOTE: Sending email directly from static frontend requires a 3rd-party service (EmailJS, Formspree, server). Below we provide two options:
+// Option A (default): use `mailto:` to open user's email client prefilled. This always works but opens client and doesn't send automatically.
+// Option B (optional): integrate EmailJS (client-side) or your own backend. Instructions commented below.
+
+const TARGET_EMAIL = 'www.rohit1020@gmail.com'; // destination email (as requested)
+const DAILY_LIMIT = 5; // per-sender-email per day
+
+function getTodayKey(email){
+  const d = new Date(); const day = d.toISOString().slice(0,10);
+  return `sent_${email}_${day}`;
+}
+
+function canSend(email){
+  const key = getTodayKey(email);
+  const val = localStorage.getItem(key);
+  const count = val ? parseInt(val,10) : 0;
+  return count < DAILY_LIMIT;
+}
+
+function increaseCount(email){
+  const key = getTodayKey(email);
+  const val = localStorage.getItem(key);
+  const count = val ? parseInt(val,10) : 0;
+  localStorage.setItem(key, (count+1).toString());
+}
+
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('senderName').value.trim();
+  const email = document.getElementById('senderEmail').value.trim();
+  const msg = document.getElementById('senderMsg').value.trim();
+  if(!canSend(email)){
+    alert('You have reached the limit of '+DAILY_LIMIT+' messages for today from this email. Try tomorrow.');
+    return;
+  }
+
+  // Default behaviour: open mailto (user sends using their mail client)
+  const subject = encodeURIComponent('Portfolio message from '+name);
+  const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\nMessage:\n'+msg);
+  const mailto = `mailto:${TARGET_EMAIL}?subject=${subject}&body=${body}`;
+  window.location.href = mailto;
+  increaseCount(email);
+  // Simple sent confirmation
+  setTimeout(()=> alert('Sent! (Using your email client).'), 400);
+
+  // If you want automatic sending without opening mail client, integrate EmailJS or backend here.
+});
+
+/* ----------------- OPTIONAL: EmailJS example (commented) -----------------
+To send automatically without opening mail client, sign up at https://www.emailjs.com, create a service and template, then uncomment and fill the IDs below.
+
+// import EmailJS script in head: <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>// emailjs.init('YOUR_USER_ID'); // then inside form submit, call emailjs.send('SERVICE_ID','TEMPLATE_ID', { to_email: TARGET_EMAIL, from_name: name, from_email: email, message: msg })
+
+Be aware: automatic sending from client exposes API keys unless you use EmailJS properly. --------------------------------------------------------------------------*/
+
+/* ----------------- Ensure existing images in doc/3d sections also load gracefully ----------------- */ // If the folder contains images named documentary1.jpg etc. or 3Dimage1.jpg we'll try to load them too function tryInsertImages(container, baseNames, isReel){ baseNames.forEach(name=>{ const path = './' + name; fileExists(path, exists=>{ if(exists){ const card = document.createElement('div'); card.className = 'video-card' + (isReel? ' reel':''); const img = document.createElement('img'); img.src = path; img.alt = name; card.appendChild(img); container.appendChild(card); setTimeout(()=>setupCircularScroll(container.id), 200); } }); }); } tryInsertImages(docContainer, ['documentary1.jpg','documentary2.jpg','documentary3.jpg'], false); tryInsertImages(threeDContainer, ['3Dvideo1.jpg','3Dvideo2.jpg','3Dvideo3.jpg'], false);
+
+/* ----------------- Accessibility: pause videos when another plays ----------------- */ document.addEventListener('play', function(e){ const vids = document.querySelectorAll('video'); vids.forEach(v=>{ if(v!==e.target) v.pause(); }); }, true);
+
+</script>
+</body>
+</html>
