@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROHIT SHARMA | Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap');
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+body {background:#0d0d0d; color:#fff; overflow-x:hidden;}
+
+/* HEADER STICKY */
+header.sticky-header {position: sticky; top: 0; z-index: 1100; background: #0d0d0d; padding:5px 0; text-align: center;}
+
+/* NEON TEXT */
+.neon-outline {font-family:'Orbitron',sans-serif; font-weight:700; color:#0d0d0d; position:relative; display:inline-block; white-space:nowrap; font-size:clamp(2rem,10vw,5rem);} 
+.neon-outline::before {content:attr(data-text); position:absolute; top:0; left:0; width:100%; height:100%; color:transparent; -webkit-text-stroke:2px #00f7ff; background:linear-gradient(270deg,#ff00ff,#00f7ff,#ff00ff); background-size:300% 300%; -webkit-background-clip:text; background-clip:text; animation:glowAnim 4s linear infinite;}
+@keyframes glowAnim {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+/* NAVBAR STICKY */
+nav {position: sticky; top: 0; width: 100%; overflow-x: auto; overflow-y: hidden; background: rgba(10, 10, 10, 0.95); padding: 12px 0; backdrop-filter: blur(10px); z-index: 1050;}
+nav::-webkit-scrollbar {display:none;} nav{-ms-overflow-style:none; scrollbar-width:none;}
+.nav-wrapper {display:flex; gap:45px; padding:0 20px; align-items:center;}
+nav a {flex:0 0 auto; text-decoration:none; color:#fff; font-weight:600; padding:12px 18px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; position:relative; z-index:0; height:35px; line-height:35px;}
+nav a::before {content:""; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; border-radius:14px; background:linear-gradient(270deg,#ff00ff,#00f7ff,#ff00ff); background-size:300% 300%; z-index:-1; animation:glow 4s linear infinite; opacity:1;}
+@keyframes glow {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+nav a.active {box-shadow:0 0 25px #00f7ff; transform:scale(1.1); transition:transform 0.3s ease, box-shadow 0.3s ease;}
+
+/* SECTIONS */
+section {padding:30px 20px 60px 20px; text-align:center;}
+.about {display:flex; flex-direction:column; align-items:center; gap:20px;}
+.about img {width:150px; height:150px; border-radius:50%; object-fit:cover; border:3px solid #00f7ff; box-shadow:0 0 20px #00f7ff;}
+.about p {max-width:600px; line-height:1.6; font-size:1rem; color:#f0f0f0;}
+
+/* WORK SECTION */
+.work-section h3 {font-size:1.2rem; color:#fff; margin-top:25px; margin-bottom:10px;}
+.scroll-container {display:flex; overflow-x:auto; gap:20px; scroll-behavior:auto; padding:10px;}
+.scroll-container::-webkit-scrollbar {display:none;}
+.video-card {flex:0 0 auto; border-radius:10px; overflow:hidden; box-shadow:0 0 15px rgba(0,247,255,0.3); transition:transform 0.3s ease, box-shadow 0.3s ease; position:relative;}
+.video-card img, .video-card video {display:block; width:180px; aspect-ratio:16/9; object-fit:cover;}
+.video-card.reel img, .video-card.reel video {width:120px; aspect-ratio:9/16;}
+.video-card.active {transform:scale(1.1); box-shadow:0 0 30px #00f7ff; z-index:2;}
+
+/* CONTACT */
+.contact {max-width:600px; margin:auto; text-align:center;}
+.contact input, .contact textarea {width:100%; padding:12px; margin:10px 0; border:none; border-radius:6px; outline:none; background:rgba(255,255,255,0.1); color:#fff; box-shadow:0 0 10px #00f7ff;}
+.contact textarea {height:120px; resize:none;}
+.contact button {padding:10px 20px; border:none; border-radius:6px; background:linear-gradient(45deg,#ff00ff,#00f7ff); color:#fff; font-size:1rem; cursor:pointer; box-shadow:0 0 15px #00f7ff; transition:transform 0.3s ease;}
+.contact button:hover {transform:scale(1.05);}
+
+/* SOCIALS */
+.socials {margin-top:20px; display:flex; justify-content:center; gap:15px;}
+.socials a {display:inline-block;}
+.socials img {width:40px; height:40px; filter:drop-shadow(0 0 10px #00f7ff); transition:transform 0.3s ease, filter 0.3s ease;}
+.socials img:hover {transform:scale(1.2); filter:drop-shadow(0 0 20px #ff00ff);}
+
+/* LOADER */
+#page-loader {position:fixed; inset:0; background:linear-gradient(135deg,#0b0b0b,#070707); display:flex; align-items:center; justify-content:center; z-index:2000;}
+.loader-box {text-align:center;}
+.loader-animation {width:120px; height:120px; border-radius:20px; display:inline-grid; place-items:center; box-shadow:0 0 40px rgba(0,247,255,0.12); background:linear-gradient(135deg,#070707,#111); border:2px solid rgba(0,247,255,0.08); position:relative; overflow:hidden;}
+.loader-animation::after {content:""; position:absolute; inset:-50% -50%; background:conic-gradient(from 0deg,#00f7ff, #ff00ff, transparent 40%); animation:spin 2s linear infinite; opacity:0.9; filter:blur(12px);} 
+@keyframes spin {to{transform:rotate(360deg);} }
+.loader-text {margin-top:14px; color:#cfefff; font-weight:600;}
+
+/* Reveal animation */
+.reveal {opacity:0; transform:translateY(20px); transition:opacity 0.7s ease, transform 0.7s ease;}
+.reveal.visible {opacity:1; transform:translateY(0);} 
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+  <div class="loader-box">
+    <div class="loader-animation"></div>
+    <div class="loader-text">Portfolio is loading...</div>
+  </div>
+</div>
+
+<header class="sticky-header">
+  <h1 class="neon-outline" data-text="ROHIT SHARMA">ROHIT SHARMA</h1>
+</header>
+
+<nav>
+  <div class="nav-wrapper">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+    <a href="#socials">Handles</a>
+  </div>
+</nav>
+
+<section id="home" class="about reveal"></section>
+
+<section id="about" class="about reveal">
+  <h2 class="neon-outline" data-text="About">About</h2>
+  <img id="profileImg" src="https://picsum.photos/150" alt="Profile Picture">
+  <p>I am 2 years experienced professional skilled video editor. I can edit all types of video like documentary editing, 3D editing, YouTube video editing, podcast editing, subtitles editing, faceless video editing, Instagram reels and YT shorts video editing.</p>
+</section>
+
+<section id="work" class="work-section reveal">
+  <h2 class="neon-outline" data-text="Work">Work</h2>
+  <h3>Reels Editing</h3>
+  <div class="scroll-container" id="reels-container">
+    <div class="video-card reel"><img src="https://picsum.photos/id/1015/200/400" alt="Reel 1"></div>
+    <div class="video-card reel"><img src="https://picsum.photos/id/1016/200/400" alt="Reel 2"></div>
+    <div class="video-card reel"><img src="https://picsum.photos/id/1018/200/400" alt="Reel 3"></div>
+  </div>
+  <h3>Documentary Editing</h3>
+  <div class="scroll-container" id="doc-container"></div>
+  <h3>3D Editing</h3>
+  <div class="scroll-container" id="3d-container"></div>
+</section>
+
+<section id="contact" class="contact reveal">
+  <h2 class="neon-outline" data-text="Contact">Contact Me</h2>
+  <form id="contactForm">
+    <input type="text" id="senderName" placeholder="Your Name" required>
+    <input type="email" id="senderEmail" placeholder="Your Email" required>
+    <textarea id="senderMsg" placeholder="Type your message here..." required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<section id="socials" class="socials reveal">
+  <a id="link-youtube" href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
+  <a id="link-twitter" href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter"></a>
+  <a id="link-facebook" href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a>
+  <a id="link-instagram" href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+  <a id="link-linkedin" href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+</section>
+
+<script>
+// 🔹 Fix loader logic - auto hide after content ready or timeout
+window.addEventListener('load', () => hideLoader());
+setTimeout(() => hideLoader(), 5000); // safety timeout
+
+function hideLoader() {
+  const loader = document.getElementById("page-loader");
+  if (!loader || loader.classList.contains("done")) return;
+  loader.classList.add("done");
+  loader.style.transition = "opacity 0.6s ease";
+  loader.style.opacity = "0";
+  setTimeout(() => loader.remove(), 700);
+  // Reveal sections
+  document.querySelectorAll(".reveal").forEach((el, i) =>
+    setTimeout(() => el.classList.add("visible"), i * 150)
+  );
+}
+
+/* NAV SPY */
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+    if (scrollY >= sectionTop) current = section.getAttribute("id");
+  });
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current)
+      link.classList.add("active");
+  });
+});
+</script>
+</body>
+</html>
